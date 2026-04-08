@@ -17,9 +17,23 @@ Use these agents directly if you want to run a specific phase:
 - `code-reviewer` - Review code quality and spec compliance
 - `result-aggregator` - Verify integration and generate delivery report
 
+## ioRisk Skills
+
+- `seed-db` - Initialize/reset ioRisk SQLite database
+- `recalc-score` - Trigger full employee score recalculation
+- `check-js` - Run JS syntax check on HTML files
+
+## Managed Projects
+
+- **ioRisk** (IRI): `projects/ioRisk/` — PwC employee risk scoring platform (React + FastAPI)
+  - Backend: `cd projects/ioRisk && python -m backend.main` (port 8765)
+  - Frontend: `cd projects/ioRisk/frontend && npm run dev` (port 3000)
+  - Detailed spec: `projects/ioRisk/IRI_Project_Instructions.md`
+
 ## Key Files
 
 - Pipeline skill: `.claude/skills/ai-dev-team/SKILL.md`
 - Agent definitions: `.claude/agents/*.md`
+- Project rules: `.claude/rules/*.md` (api-design, database, js-coding)
 - Framework references: `frameworks/` (openspec, superpowers, oh-my-openagent)
 - Pipeline outputs: `openspec/` directory

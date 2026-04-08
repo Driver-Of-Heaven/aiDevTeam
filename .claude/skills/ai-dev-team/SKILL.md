@@ -181,3 +181,41 @@ Track pipeline state through files in the `openspec/` directory:
 3. **TDD always**: All implementation follows test-driven development
 4. **Transparency**: Always announce what phase you're in and what's happening
 5. **Fail-fast**: Report problems immediately, don't hide errors
+
+---
+
+## Managed Projects
+
+### ioRisk (IRI - Independence Risk Intelligence)
+
+- **Location**: `projects/ioRisk/` (Git Submodule)
+- **Type**: Full-stack web application (React + FastAPI)
+- **Purpose**: PwC CNHK employee independence risk scoring platform
+
+**When working on ioRisk features or bug fixes:**
+1. All source code is under `projects/ioRisk/`
+2. Backend code: `projects/ioRisk/backend/`
+3. Frontend code: `projects/ioRisk/frontend/src/`
+4. Tests: `projects/ioRisk/tests/` (backend) and `projects/ioRisk/frontend/__tests__/` (frontend)
+5. Read the detailed spec at `projects/ioRisk/IRI_Project_Instructions.md` for comprehensive context
+6. Follow rules in `.claude/rules/` (api-design, database, js-coding)
+
+**ioRisk-specific skills available:**
+- `/seed-db` — Initialize/reset the SQLite database
+- `/recalc-score` — Trigger full score recalculation
+- `/check-js` — Run JS syntax check
+
+**Starting ioRisk servers:**
+```bash
+# Backend (terminal 1)
+cd projects/ioRisk && python -m backend.main
+
+# Frontend (terminal 2)
+cd projects/ioRisk/frontend && npm run dev
+```
+
+**Running ioRisk tests:**
+```bash
+cd projects/ioRisk && python -m pytest tests/backend/ -v
+cd projects/ioRisk/frontend && npm test
+```

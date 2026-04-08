@@ -57,3 +57,67 @@ All pipeline artifacts are stored in `openspec/`:
 - Tasks are grouped into dependency waves for parallel execution
 - User approval gates between Phases 1-3
 - Task complexity classification: quick (haiku), standard (sonnet), complex (opus)
+
+---
+
+## Managed Project: ioRisk (IRI)
+
+### Overview
+
+**IRI — Independence Risk Intelligence**
+PwC CNHK Independence Office 员工独立性风险评分分析平台（二期）。
+- Location: `projects/ioRisk/` (Git Submodule)
+- GitHub: https://github.com/Driver-Of-Heaven/ioRisk
+- Version: v1.20.0
+
+### Tech Stack
+
+- Frontend: React 19 + Vite + Ant Design 6 + TypeScript + Zustand (port 3000)
+- Backend: FastAPI + Uvicorn (port 8765)
+- DB (POC): SQLite `projects/ioRisk/backend/iri.db`
+- DB (Prod): SQL Server — HOST:AAA, PORT:1800, DB:IO_RISK
+- Testing: Vitest (frontend) + Pytest (backend)
+
+### Quick Start (ioRisk)
+
+```bash
+# Backend
+cd projects/ioRisk
+python -m backend.seed.seed_db       # Initialize DB (first time)
+python -m backend.main               # Start backend on :8765
+
+# Frontend (separate terminal)
+cd projects/ioRisk/frontend
+npm install                          # First time only
+npm run dev                          # Start frontend on :3000
+
+# Tests
+cd projects/ioRisk/frontend && npm test
+cd projects/ioRisk && python -m pytest tests/backend/ -v
+```
+
+### Architecture
+
+- Phase-1 DB (read-only): 15 tables `PMCD_Biz_*` from legacy PMCD system
+- Phase-2 DB (read-write): 10 tables `pmcd_io_risk__*` for IRI scoring
+- Dual-ID: WorkerID (scoring key) + StaffID (business key), bridged by `cn_staff_id`
+- Vite proxy: `/api/*` → `http://localhost:8765`
+- 8 Frontend pages: DataSource | DataFlow | DataTable | Staff | Analytics | Tasks | AI | DevTools
+
+### Scoring Model
+
+- 3-tier indicators: L1(2) → L2(8) → L3(12)
+- Risk levels: score >= 70 (high), >= 40 (medium), < 40 (low)
+- Correction factors: Partner/Director ×1.2, tenure<2yr ×0.7, repeat violation ×1.3
+
+### Key Rules
+
+See `.claude/rules/` for detailed rules:
+- `api-design.md` — API endpoint conventions
+- `database.md` — Dual-ID system, schema, data consistency
+- `js-coding.md` — Forbidden/required coding patterns
+
+### Detailed Specification
+
+For comprehensive project instructions (17.5KB), see:
+`projects/ioRisk/IRI_Project_Instructions.md`

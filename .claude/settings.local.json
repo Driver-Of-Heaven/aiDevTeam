@@ -2,7 +2,26 @@
   "permissions": {
     "allow": [
       "WebFetch(domain:mp.weixin.qq.com)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(gh --version)",
+      "Bash(winget install:*)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
+      "Bash(git config:*)",
+      "Bash(gh auth:*)",
+      "Bash(gh repo:*)",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vitest:*)",
+      "Bash(pip install:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(python -m backend.main:*)",
+      "Bash(python -m backend.seed.seed_db:*)",
+      "Bash(python -c:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(node --test:*)",
+      "Bash(claude config:*)"
     ]
   }
 }
