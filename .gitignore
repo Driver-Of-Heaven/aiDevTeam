@@ -1,0 +1,17 @@
+# Third-party frameworks (cloned separately)
+frameworks/
+
+# Node modules
+node_modules/
+
+# OpenSpec runtime outputs (generated per project)
+openspec/changes/
+openspec/explorations/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
